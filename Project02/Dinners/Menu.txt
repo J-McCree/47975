@@ -1,0 +1,12 @@
+***********************MENU*************************  
+1. View Instructions.
+2. View known dinners.
+3. Add a dinner to known dinner(s) recipe.
+4. Remove a dinner from known dinner(s) recipe.
+5. Clear current list of dinners and begin a new one.
+6. Choose a dinner to add to list.
+7. Random Dinners to fill the list.
+8. View current dinner list.
+9. Export List of Dinners to a word Document.
+
+Enter anything else to Exit the program.
