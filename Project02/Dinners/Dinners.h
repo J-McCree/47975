@@ -20,7 +20,20 @@ private:
     bool correct;
     short days;        
 public:
+    short menu();
+    
     void instructions(fstream &, Dinners);
+    void kwnDinners(fstream &);
+
+    void addDinner(fstream &, Dinners);
+    void newDinner(string);
+    void rmvDinner(fstream &);
+    char modify();
+
+    void dlDinList(fstream &);
+    void randomDin(Dinners *, int);
+
+    Dinners addDinList(Dinners, int, int);
     
     //Constructors
     Dinners(){
