@@ -7,6 +7,8 @@
 6. Choose a dinner to add to list.
 7. Random Dinners to fill the list.
 8. View current dinner list.
-9. Export List of Dinners to a word Document.
+9. Create a Custom Grocery List.
+10. Change the order of your dinner selection.
+11. Export List of Dinners to a word Document.
 
 Enter anything else to Exit the program.

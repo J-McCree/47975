@@ -36,7 +36,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/DnnrApp.o
+	${OBJECTDIR}/Dinners.o \
+	${OBJECTDIR}/AddGroceries.o
 
 
 # C Compiler Flags
@@ -68,10 +69,15 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} $@.d
 	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/main.o main.cpp
 
-${OBJECTDIR}/DnnrApp.o: DnnrApp.cpp 
+${OBJECTDIR}/Dinners.o: Dinners.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
-	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/DnnrApp.o DnnrApp.cpp
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/Dinners.o Dinners.cpp
+
+${OBJECTDIR}/AddGroceries.o: AddGroceries.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/AddGroceries.o AddGroceries.cpp
 
 # Subprojects
 .build-subprojects:

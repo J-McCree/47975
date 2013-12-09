@@ -1,6 +1,15 @@
+/* 
+ * File:   Begins the DnnrApp portion of the program
+ * this is where almost all of the functions will be
+ * applied.
+ * 
+ * Author: Joshua McCree
+ *
+ * Created on December 8, 2013, 11:47 AM
+ */
+
 //Include system libraries
 #include <iostream>
-#include <iomanip>
 #include <fstream>
 #include <ctime>
 using namespace std;
@@ -57,6 +66,7 @@ short Dinners::menu(){
 }
 
 void Dinners::kwnDinners(fstream &file){
+    //Declare and initialize variables for this function
     char letter;
     
     file.open("DinnerOptions.rtf", ios :: in);
@@ -76,15 +86,20 @@ void Dinners::kwnDinners(fstream &file){
     file.close();
 }
 
+//Add a Dinner recipe to the known dinners
 void Dinners::addDinner(fstream &file, Dinners d){
+    
+    //Declare and initialize variables needed for this function
     char x, ch;
     char pos;
     string tempBeg = "", tempEnd = "", tempAdd = "";
     
+    //Begins the loop to modify the list of dinners displayed by the program
     do{
         pos = d.modify();
     }while(pos != '!' && pos != '@' && pos !='#' && pos != '$');
     
+    //Open file to modify
     file.open("DinnerOptions.rtf", ios::in);
     
     //Stores the file input up to the insert line.
@@ -117,6 +132,8 @@ void Dinners::addDinner(fstream &file, Dinners d){
         tempAdd += ch;
         cin.get(ch);
     }
+    //Stores the needed information then compacts it back into
+    //one variable that gets re-stored to the .rtf file
     d.setMod(tempAdd);
     d.newDinner(d.getMod());
     
@@ -149,10 +166,13 @@ void Dinners::newDinner(string meal){
     temp = "Z" + temp + ".rtf";
     meal = "";
 
+    //Requests input from the user for the required grocery items needed to make
+    //the new meal
     f.open(temp.c_str(), ios::out);
     cout<<"\nPlease enter the list of items you will need to make this dish."<<endl;
     cout<<"You may finish your input at anytime by using the * key and pressing [ENTER]"<<endl;
     
+    //Gets input from the user to to store to a file until terminator key is entered
     cin.get(ch);
     while (ch != '*') {
         meal += ch;
@@ -163,13 +183,18 @@ void Dinners::newDinner(string meal){
     f<<meal;  
     f.close();
 }
+
+//Removes a Dinner recipe off the known recipe list
 void Dinners::rmvDinner(fstream &file){
+    
+    //Declare and initialize variables needed for this function
     char x;
     char pos;
     string beg;
     string end;
     string input;
     
+    //Begins a loop to determine which category to delete the item from
     do{
         pos = modify();
     }while(pos != '!' && pos != '@' && pos !='#' && pos != '$');
@@ -200,6 +225,7 @@ void Dinners::rmvDinner(fstream &file){
     
     beg = beg + "\n" + end;
     
+    //Open the file, reads the modified list to it, then closes the file
     file.open("DinnerOptions.rtf", ios::out);
     file << beg;
     file.close();
@@ -222,29 +248,40 @@ char Dinners::modify(){
     return mod;
 }
 
+//Deletes the current dinner list, if there is one and requests
+//input from the user to start a new one
 void Dinners::dlDinList(fstream &file){
     file.open("DinnerList.rtf", ios::out);
     file << " ";
     file.close();
 }
 
+//Runs a loop to manually select dinners to add to the dinner list
 Dinners Dinners::addDinList(Dinners d, int pos, int numDin){
+    
+    //Declare and initialize variables needed for this function
     fstream file; 
     string temp;
     char x;
     
     temp.clear();
     d.setName("");
-        
+    
+    //Requests the name of the meal the user is going to add to the
+    //the dinner list
     cout<<"Dinner choice ("<<pos+1<<"): ";
     getline(cin, temp);
     d.setName(temp);
 
+    //If the user doesn't enter a correct name for a dinner it sets correct
+    //variable to false
     d.setCorrect(false);
     temp = "z" + d.getName() + ".rtf"; 
     file.open(temp.c_str(), ios::in);
     temp.clear();
     
+    //If the user entered a correct dinner it saves the dinner and the grocery 
+    //list. Otherwise it lets them know they didn't enter a valid option
     if(file){
         cout<<"Thank you, it's grocery list has been saved."<<endl<<endl;
         d.setCorrect(true);
@@ -265,7 +302,10 @@ Dinners Dinners::addDinList(Dinners d, int pos, int numDin){
     return d;
 }
 
+//Runs the function that will Fill the dinner list with random Dinners
 void Dinners::randomDin(Dinners *d, int num){
+    
+    //Declare and initialize variables needed for this function
     int randDin;
     fstream file;
     string temp;
@@ -273,6 +313,7 @@ void Dinners::randomDin(Dinners *d, int num){
     bool first = true;
     bool on[19];
     
+    //Runs a if statement to disable dinner options that have already been randomed
     if(first == true){
         for(int i = 0; i < 20; i++){
         on[i] = true;
@@ -280,7 +321,7 @@ void Dinners::randomDin(Dinners *d, int num){
         first = false;
     }
     
-    
+    //Runs a for loop to select all the random dinners.
     for(int i = 0; i < num; ){
         randDin = rand()%20;
         

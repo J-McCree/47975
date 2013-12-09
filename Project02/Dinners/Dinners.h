@@ -1,19 +1,22 @@
 /* 
- * File:   Dinners.h
+ * File:   Starts the dinner class that the DinnerApp will use to 
+ * run all of its functions from, and inherits from the AddGrocery
+ * file, because it adds grocery lists for each dinner the user selects
+ * 
  * Author: Joshua McCree
  *
- * Created on October 24, 2013, 7:03 PM
+ * Created on December 8, 2013, 11:47 AM
  */
 
 #ifndef DINNERS_H
 #define	DINNERS_H
+#include "AddGroceries.h"
 
 using namespace std;
 
-class Dinners{
-private:
-    string beg, mod, end;
-    
+class Dinners : AddGroceries
+{
+private:    
     string name;
     string def;
     
@@ -21,7 +24,7 @@ private:
     short days;        
 public:
     short menu();
-    
+ 
     void instructions(fstream &, Dinners);
     void kwnDinners(fstream &);
 
@@ -37,9 +40,6 @@ public:
     
     //Constructors
     Dinners(){
-        beg = "";
-        mod = "";
-        end = "";
         name = "";
         def = "";
         correct = false;
